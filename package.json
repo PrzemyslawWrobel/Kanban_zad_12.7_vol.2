@@ -1,0 +1,49 @@
+{
+  "name": "Kanban_zad_12.7_vol.2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-run-all test:*",
+    "test:html": "globstar nu-html-checker *.html",
+    "test:js": "globstar jshint js/*.js",
+    "init-project": "npm install && npm-run-all init:*",
+    "init:dirs": "mkdirp sass css vendor images js",
+    "init:files": "touch README.md index.html sass/style.scss js/script.js",
+    "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
+    "build": "npm run build:* test",
+    "biuld:clean": "rimraf css/*.css",
+    "build:sass": "node-sass --output-style compact -o css sass",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "build-dev:sass": "node-sass --output-style expanded --source-map true -o css sass",
+    "watch": "npm-run-all build -p watch:*",
+    "watch:sassprefixer": "onchange scss/*.scss -- npm-run-all sassprefixer:*",
+    "sassprefixer:sass": "node-sass --output-style expanded --source-map true -o css scss",
+    "sassprefixer:autoprefixer": "autoprefixer-cli css/style.css",
+    "watch:browsersync": "browser-sync start --server --files 'css/*.css' '*.html'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrzemyslawWrobel/.git"
+  },
+  "keywords": [],
+  "author": "Przemyslaw Wrobel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrzemyslawWrobel/Kanban_zad_12.7_vol.2"
+  },
+  "homepage": "https://github.com/PrzemyslawWrobel/Kanban_zad_12.7_vol.2",
+  "devDependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.23.6",
+    "globstar": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^3.3.0",
+    "rimraf": "^2.6.2",
+    "jshint": "^2.9.5"
+  },
+  "dependencies": {}
+}
